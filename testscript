@@ -9,6 +9,9 @@
 #   A simple bash script to run a single copy of each test case
 #   and gather the relevant data.
 
+LOW=10
+MEDIUM=50
+HIGH=500
 ITERATIONS=100000000
 BYTESTOCOPY=102400
 BLOCKSIZE=1024
