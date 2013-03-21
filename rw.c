@@ -4,7 +4,7 @@
  * Project: CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/19
  * Modify Date: 2012/03/20
- * Description: A small i/o bound program to copy N bytes from an input
+ * Description: A small I/O bound program to copy N bytes from an input
  *              file to an output file. May read the input file multiple
  *              times if N is larger than the size of the input file.
  */
@@ -58,7 +58,10 @@ int main(int argc, char* argv[]){
     }
     else {
         transfersize = atol(argv[1]);
-        if (transfersize < 1) {
+        if (transfersize == 0) {
+            transfersize = DEFAULT_TRANSFERSIZE;
+        }
+        else if (transfersize < 0) {
             fprintf(stderr, "Bad transfersize value\n");
             exit(EXIT_FAILURE);
         }
@@ -70,7 +73,10 @@ int main(int argc, char* argv[]){
     }
     else {
         blocksize = atol(argv[2]);
-        if (blocksize < 1) {
+        if (blocksize == 0) {
+            blocksize = DEFAULT_BLOCKSIZE;
+        }
+        else if (blocksize < 0) {
             fprintf(stderr, "Bad blocksize value\n");
             exit(EXIT_FAILURE);
         }
@@ -120,7 +126,7 @@ int main(int argc, char* argv[]){
 
     /* Allocate buffer space */
     buffersize = blocksize;
-    if (!(transferBuffer = malloc(buffersize*sizeof(*transferBuffer)))) {
+    if (!(transferBuffer = malloc(buffersize * sizeof(*transferBuffer)))) {
         perror("Failed to allocate transfer buffer");
         exit(EXIT_FAILURE);
     }
