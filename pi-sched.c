@@ -54,8 +54,15 @@ int main(int argc, char* argv[]){
     /* Set iterations if supplied */
     if (argc > 1) {
         iterations = atol(argv[1]);
-        if (iterations < 1) {
-            fprintf(stderr, "Bad iterations value\n");
+        if (iterations == 0) {
+            /* Set default iterations */
+            iterations = DEFAULT_ITERATIONS;
+        }
+        else if (iterations < 0) {
+            fprintf(stderr, "Bad iterations value [%li]\n", iterations);
+            fprintf(stderr, "  0:  Default iterations [%d]\n", DEFAULT_ITERATIONS);
+            fprintf(stderr, "  <0: Bad iterations value\n");
+            fprintf(stderr, "  >1: Good iterations value\n");
             exit(EXIT_FAILURE);
         }
     }
@@ -72,7 +79,9 @@ int main(int argc, char* argv[]){
             policy = SCHED_RR;
         }
         else {
-            fprintf(stderr, "Unhandeled scheduling policy\n");
+            fprintf(stderr, "Unhandeled scheduling policy [%s]\n", argv[2]);
+            fprintf(stderr, "Available scheduling policies:\n");
+            fprintf(stderr, "  SCHED_OTHER, SCHED_FIFO, SCHED_RR\n");
             exit(EXIT_FAILURE);
         }
     }

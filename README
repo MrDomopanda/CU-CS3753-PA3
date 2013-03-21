@@ -14,12 +14,12 @@ Junho Ahn - 2012
 handout - Assignment description and documentation
 
 ---Executables---
-./testscript - A simple bash script for running a few sample test cases
-./pi - A simple program for statistically calculating pi
+./testscript - A simple bash script for running a few sample test cases.
+./pi - A simple program for statistically calculating pi.
 ./pi-sched - A simple program for statistically calculating pi using
-             a specific scheduling policy
-./rw - A simple i/o bound example program.
-./rr_quantum - A simple program for determing the RR quantum.
+             a specific scheduling policy.
+./rw - A simple I/O bound example program.
+./rr_quantum - A simple program for determining the RR quantum.
 
 ---Examples---
 Build:
