@@ -5,7 +5,7 @@
  * Create Date: 2012/03/07
  * Modify Date: 2012/03/09
  * Description:
- * 	This file contains a simple program for statistically
+ *  This file contains a simple program for statistically
  *      calculating pi.
  */
 
@@ -40,26 +40,26 @@ int main(int argc, char* argv[]){
 
     /* Process program arguments to select iterations */
     /* Set default iterations if not supplied */
-    if(argc < 2){
-	iterations = DEFAULT_ITERATIONS;
+    if (argc < 2) {
+        iterations = DEFAULT_ITERATIONS;
     }
     /* Set iterations if supplied */
-    else{
-	iterations = atol(argv[1]);
-	if(iterations < 1){
-	    fprintf(stderr, "Bad iterations value\n");
-	    exit(EXIT_FAILURE);
-	}
+    else {
+        iterations = atol(argv[1]);
+        if (iterations < 1) {
+            fprintf(stderr, "Bad iterations value\n");
+            exit(EXIT_FAILURE);
+        }
     }
 
-    /* Calculate pi using statistical methode across all iterations*/
-    for(i=0; i<iterations; i++){
-	x = (random() % (RADIUS * 2)) - RADIUS;
-	y = (random() % (RADIUS * 2)) - RADIUS;
-	if(zeroDist(x,y) < RADIUS){
-	    inCircle++;
-	}
-	inSquare++;
+    /* Calculate pi using statistical method across all iterations*/
+    for (i=0; i<iterations; i++) {
+        x = (random() % (RADIUS * 2)) - RADIUS;
+        y = (random() % (RADIUS * 2)) - RADIUS;
+        if (zeroDist(x,y) < RADIUS) {
+            inCircle++;
+        }
+        inSquare++;
     }
 
     /* Finish calculation */

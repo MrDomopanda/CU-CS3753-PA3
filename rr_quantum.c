@@ -31,22 +31,22 @@ int main(int argc, char* argv[]){
     /* Set Policy */
     policy = SCHED_RR;
 
-    /* Set process to max prioty for given scheduler */
+    /* Set process to max priority for given scheduler */
     param.sched_priority = sched_get_priority_max(policy);
 
     /* Set new scheduler policy */
     fprintf(stdout, "Current Scheduling Policy: %d\n", sched_getscheduler(0));
     fprintf(stdout, "Setting Scheduling Policy to: %d\n", policy);
-    if(sched_setscheduler(0, policy, &param)){
-	perror("Error setting scheduler policy");
-	exit(EXIT_FAILURE);
+    if (sched_setscheduler(0, policy, &param)) {
+        perror("Error setting scheduler policy");
+        exit(EXIT_FAILURE);
     }
     fprintf(stdout, "New Scheduling Policy: %d\n", sched_getscheduler(0));
 
     /* Find RR Quantum */
-    if(sched_rr_get_interval(getpid(), &tp)){
-	perror("Error getting RR Quantum");
-	exit(EXIT_FAILURE);
+    if (sched_rr_get_interval(getpid(), &tp)) {
+        perror("Error getting RR Quantum");
+        exit(EXIT_FAILURE);
     }
 
     fprintf(stdout, "tp.tv_sec  = %ld\n", tp.tv_sec);
