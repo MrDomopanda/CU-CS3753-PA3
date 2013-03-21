@@ -6,13 +6,13 @@
 #Create Date: 2012/03/09
 #Modify Date: 2012/03/21
 #Description:
-#   A simple bash script to run a signle copy of each test case
-#   and gather the relevent data.
+#   A simple bash script to run a single copy of each test case
+#   and gather the relevant data.
 
 ITERATIONS=100000000
 BYTESTOCOPY=102400
 BLOCKSIZE=1024
-TIMEFORMAT="wall=%e user=%U system=%S CPU=%P i-switched=%c v-switched=%w"
+TIMEFORMAT="wall=%e user=%U system=%S CPU=%P preempted=%c blocked=%w"
 MAKE="make -s"
 
 echo Building code...
