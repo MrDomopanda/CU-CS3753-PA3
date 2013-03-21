@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <errno.h>
+#include <sched.h>
 
 /* Local Defines */
 #define DEFAULT_ITERATIONS 1000000
@@ -51,12 +52,13 @@ int main(int argc, char* argv[]){
             exit(EXIT_FAILURE);
         }
     }
+    printf("iterations = %li\n", iterations);
 
     /* Calculate pi using statistical method across all iterations*/
-    for (i=0; i<iterations; i++) {
+    for (i = 0; i < iterations; ++i) {
         x = (random() % (RADIUS * 2)) - RADIUS;
         y = (random() % (RADIUS * 2)) - RADIUS;
-        if (zeroDist(x,y) < RADIUS) {
+        if (zeroDist(x, y) < RADIUS) {
             inCircle++;
         }
         inSquare++;
@@ -64,7 +66,7 @@ int main(int argc, char* argv[]){
 
     /* Finish calculation */
     pCircle = inCircle/inSquare;
-    piCalc = pCircle * 4.0;
+    piCalc  = pCircle * 4.0;
 
     /* Print result */
     fprintf(stdout, "pi = %f\n", piCalc);

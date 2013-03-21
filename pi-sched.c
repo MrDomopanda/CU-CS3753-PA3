@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 #include <errno.h>
 #include <sched.h>
 #include <sys/types.h>  // Used for fork
@@ -22,28 +21,14 @@
 
 #define DEFAULT_ITERATIONS 1000000
 #define DEFAULT_CHILDREN   10
-#define RADIUS (RAND_MAX / 2)
-
-inline double dist(double x0, double y0, double x1, double y1){
-    return sqrt( pow((x1-x0), 2) + pow((y1-y0), 2) );
-}
-
-inline double zeroDist(double x, double y){
-    return dist(0, 0, x, y);
-}
 
 int main(int argc, char* argv[]){
 
-    long   i;
+    int    i;
     long   iterations;
     struct sched_param param;
     int    policy;
     int    children;
-    double x, y;
-    double inCircle = 0.0;
-    double inSquare = 0.0;
-    double pCircle  = 0.0;
-    double piCalc   = 0.0;
     pid_t pid;
 
     /* Process program arguments to select iterations and policy */
@@ -125,37 +110,22 @@ int main(int argc, char* argv[]){
     }
     fprintf(stdout, "New Scheduling Policy: %d\n", sched_getscheduler(0));
 
-    /* Fork children */
-    i = 0;
-    do {
-        ++i;
+    /* Fork children child processes */
+    for (i = 0; i < children; ++i) {
         if ((pid = fork()) == -1) exit(EXIT_FAILURE);   /* Fork Failed */
-        if (pid > 0) printf("Forked %li pid = %d\n", i, pid);
-    } while ((pid > 0) && (i < children));
-
-    /* Calculate pi using statistical method across all iterations */
-    for (i = 0; i < iterations; ++i) {
-        x = (random() % (RADIUS * 2)) - RADIUS;
-        y = (random() % (RADIUS * 2)) - RADIUS;
-        if (zeroDist(x, y) < RADIUS) {
-            inCircle++;
+        if (pid == 0) { /* Child process */
+            // execl(exe, argv[0], argv[1], argv[2], ..., NULL)
+            execl("pi", "pi", argv[1], NULL);
+            exit(EXIT_SUCCESS);
+        } else {        /* Parent process */
+            printf("Forked %d pid = %d\n", i, pid);
         }
-        inSquare++;
     }
 
-    /* Finish calculation */
-    pCircle = inCircle/inSquare;
-    piCalc = pCircle * 4.0;
-
-    /* Print result */
-    fprintf(stdout, "pi = %f\n", piCalc);
-
-    /* Wait for children to finish */
-    if (pid > 0) {
-        for (i = 0; i < children; ++i) {
-            pid = wait(NULL);
-            printf("Waited %li pid = %d\n", i+1, pid);
-        }
+    /* Wait for children child processes to finish */
+    for (i = 0; i < children; ++i) {
+        pid = wait(NULL);
+        printf("Waited %d pid = %d\n", i+1, pid);
     }
 
     return 0;
