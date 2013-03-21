@@ -3,7 +3,7 @@
  * Author: Andy Sayler
  * Project: CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/07
- * Modify Date: 2012/03/09
+ * Modify Date: 2013/03/21
  * Description:
  *  This file contains a simple program for statistically
  *      calculating pi using a specific scheduling policy.
@@ -19,6 +19,7 @@
 #include <sys/wait.h>   // Used for fork
 #include <unistd.h>     // Used for fork
 
+/* Local Defines */
 #define DEFAULT_ITERATIONS 1000000
 #define DEFAULT_CHILDREN   10
 
@@ -29,7 +30,7 @@ int main(int argc, char* argv[]){
     struct sched_param param;
     int    policy;
     int    children;
-    pid_t pid;
+    pid_t  pid;
 
     /* Process program arguments to select iterations and policy */
     /* Set default iterations if not supplied */

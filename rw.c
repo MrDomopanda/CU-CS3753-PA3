@@ -3,7 +3,7 @@
  * Author: Andy Sayler
  * Project: CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/19
- * Modify Date: 2012/03/20
+ * Modify Date: 2013/03/21
  * Description: A small I/O bound program to copy N bytes from an input
  *              file to an output file. May read the input file multiple
  *              times if N is larger than the size of the input file.
@@ -28,6 +28,7 @@
 #define DEFAULT_OUTPUTFILENAMEBASE "rwoutput"
 #define DEFAULT_BLOCKSIZE 1024
 #define DEFAULT_TRANSFERSIZE 1024*100
+
 
 int main(int argc, char* argv[]){
 
@@ -107,11 +108,16 @@ int main(int argc, char* argv[]){
         strncpy(outputFilenameBase, DEFAULT_OUTPUTFILENAMEBASE, MAXFILENAMELENGTH);
     }
     else {
-        if (strnlen(argv[4], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH) {
-            fprintf(stderr, "Output filename base is too long\n");
-            exit(EXIT_FAILURE);
+        if (!strcmp(argv[4], "default")) {
+            strncpy(outputFilenameBase, DEFAULT_OUTPUTFILENAMEBASE, MAXFILENAMELENGTH);
         }
-        strncpy(outputFilenameBase, argv[4], MAXFILENAMELENGTH);
+        else {
+            if (strnlen(argv[4], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH) {
+                fprintf(stderr, "Output filename base is too long\n");
+                exit(EXIT_FAILURE);
+            }
+            strncpy(outputFilenameBase, argv[4], MAXFILENAMELENGTH);
+        }
     }
 
     /* Confirm blocksize is multiple of and less than transfersize*/
