@@ -43,14 +43,12 @@ int main(int argc, char* argv[]) {
     char outputFilenameBase[MAXFILENAMELENGTH];
 
     /* I/O Bound Variables */
-    int rv;
-    /*FILE* outputFD;*/
-    int outputFD;
+    int  rv;
+    int  outputFD;
     char writeBuffer[78];
-    //char* writeBuffer = NULL;
 
     /* CPU Bound Variables */
-    long i, j;
+    long   i, j;
     double x, y;
     double inCircle = 0.0;
     double inSquare = 0.0;

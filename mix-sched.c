@@ -29,36 +29,32 @@
 
 int main(int argc, char* argv[]){
 
-    ssize_t transfersize = 0;
-    ssize_t blocksize    = 0;
-    char    inputFilenameBase[MAXFILENAMELENGTH];
-    char    inputFilename[MAXFILENAMELENGTH];
-    char    outputFilenameBase[MAXFILENAMELENGTH];
-    int     policy;
-    int     children;
+    /* Parameters */
+    int policy;
+    int children;
 
+    /* Scheduler/Fork Variables */
     struct sched_param param;
     int    i;
-    int    rv;
     pid_t  pid;
 
     /* Process program arguments to select run-time parameters */
     /* Set policy or default if not supplied */
-    if (argc < 6) {
+    if (argc < 5) {
         policy = SCHED_OTHER;
     }
     else {
-        if (!strcmp(argv[5], "SCHED_OTHER")) {
+        if (!strcmp(argv[4], "SCHED_OTHER")) {
             policy = SCHED_OTHER;
         }
-        else if (!strcmp(argv[5], "SCHED_FIFO")) {
+        else if (!strcmp(argv[4], "SCHED_FIFO")) {
             policy = SCHED_FIFO;
         }
-        else if (!strcmp(argv[5], "SCHED_RR")) {
+        else if (!strcmp(argv[4], "SCHED_RR")) {
             policy = SCHED_RR;
         }
         else {
-            fprintf(stderr, "Unhandeled scheduling policy [%s]\n", argv[5]);
+            fprintf(stderr, "Unhandeled scheduling policy [%s]\n", argv[4]);
             fprintf(stderr, "Available scheduling policies:\n");
             fprintf(stderr, "  SCHED_OTHER, SCHED_FIFO, SCHED_RR\n");
             exit(EXIT_FAILURE);
@@ -66,11 +62,11 @@ int main(int argc, char* argv[]){
     }
 
     /* Set number of child processes to spawn or default if not supplied */
-    if (argc < 7) {
+    if (argc < 6) {
         children = DEFAULT_CHILDREN;
     }
     else {
-        children = atol(argv[6]);
+        children = atol(argv[5]);
         if (children == 0) {
             /* Set default iterations */
             children = DEFAULT_CHILDREN;
@@ -98,23 +94,10 @@ int main(int argc, char* argv[]){
 
     /* Fork children child processes */
     for (i = 0; i < children; ++i) {
-        rv = snprintf(inputFilename, MAXFILENAMELENGTH, "%s-%d",
-                "rwinput", i+1);
-        if (rv > MAXFILENAMELENGTH) {
-            fprintf(stderr, "Output filename length exceeds limit of %d characters.\n",
-                    MAXFILENAMELENGTH);
-            exit(EXIT_FAILURE);
-        }
-        else if (rv < 0) {
-            perror("Failed to generate output filename");
-            exit(EXIT_FAILURE);
-        }
-
         if ((pid = fork()) == -1) exit(EXIT_FAILURE);   /* Fork Failed */
 
         if (pid == 0) { /* Child process */
-            // execl(exe, argv[0], argv[1], argv[2], ..., NULL)
-            execl("rw", "rw", argv[1], argv[2], inputFilename, argv[4], NULL);
+            execv("mix", argv);
             exit(EXIT_SUCCESS);
         } else {        /* Parent process */
             printf("Forked %d pid = %d\n", i, pid);
@@ -124,7 +107,7 @@ int main(int argc, char* argv[]){
     /* Wait for children child processes to finish */
     for (i = 0; i < children; ++i) {
         pid = wait(NULL);
-        printf("Waited %d pid = %d\n", i+1, pid);
+        printf("Waited %d pid = %d\n", i, pid);
     }
 
     return 0;

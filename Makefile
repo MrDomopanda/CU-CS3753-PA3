@@ -10,7 +10,7 @@ INPUTFILESIZEBYTES = $(shell echo $(MEGA)\*$(INPUTFILESIZEMEGABYTES) | bc)
 INPUTBLOCKSIZEBYTES = $(KILO)
 INPUTBLOCKS = $(shell echo $(INPUTFILESIZEBYTES)\/$(INPUTBLOCKSIZEBYTES) | bc)
 
-EXECUTABLES = pi pi-sched rw rw-sched rr_quantum mix
+EXECUTABLES = pi pi-sched rw rw-sched mix mix-sched rr_quantum
 OBJECTS = $(EXECUTABLES:%=%.o)
 #OBJECTS = $(foreach exe,$(EXECUTABLES),$(exe).o)
 
@@ -22,16 +22,19 @@ pi: pi.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
 
 pi-sched: pi-sched.o pi
-	$(CC) $(LFLAGS) pi-sched.o -o $@ -lm
+	$(CC) $(LFLAGS) $@.o -o $@ -lm
 
 rw: rw.o rwinput
-	$(CC) $(LFLAGS) rw.o -o $@ -lm
+	$(CC) $(LFLAGS) $@.o -o $@ -lm
 
 rw-sched: rw-sched.o rw
-	$(CC) $(LFLAGS) rw-sched.o -o $@ -lm
+	$(CC) $(LFLAGS) $@.o -o $@ -lm
 
 mix: mix.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
+
+mix-sched: mix-sched.o mix
+	$(CC) $(LFLAGS) $@.o -o $@ -lm
 
 rr_quantum: rr_quantum.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
