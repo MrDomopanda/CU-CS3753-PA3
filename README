@@ -4,10 +4,10 @@ University of Colorado Boulder
 Programming Assignment 3
 Public Code
 
-By Andy Sayler - 2012
-http://www.andysayler.com
+By Stephen Bennett - 2013
 
 With help from:
+Andy Sayler (http://www.andysayler.com)- 2012
 Junho Ahn - 2012
 
 ---Folders---
@@ -15,11 +15,15 @@ handout     - Assignment description and documentation.
 
 ---Executables---
  testscript - A simple bash script for running a few sample test cases.
- pi         - A simple program for statistically calculating pi.
+ pi         - A simple CPU bound program for statistically calculating pi.
  pi-sched   - A simple program for spawning N pi processes using a
               specific scheduling policy.
  rw         - A simple I/O bound example program.
  rw-sched   - A simple program for spawning N rw processes using a
+              specific scheduling policy.
+ mix        - A simple mixed program form statistically calculating pi and
+              writing the intermediate results to a file (pi + rw).
+ mix-sched  - A simple program for spawning N mix processes using a
               specific scheduling policy.
  rr_quantum - A simple program for determining the RR quantum.
 
@@ -55,9 +59,23 @@ rw-sched:
  ./rw-sched <#Bytes to Write to Output File> <Block Size> <Input Filename> <Output Filename> <Scheduling Policy>
  ./rw-sched <#Bytes to Write to Output File> <Block Size> <Input Filename> <Output Filename> <Scheduling Policy> <# Child Processes>
 
-testscript:
- ./testscript
- sudo ./testscript
+mix:
+ ./mix
+ ./mix <#Intermediate Results to Write>
+ ./mix <#Intermediate Results to Write> <Number of Iterations per Write>
+ ./mix <#Intermediate Results to Write> <Number of Iterations per Write> <Output Filename>
+
+mix-sched:
+ ./mix-sched
+ ./mix-sched <#Intermediate Results to Write>
+ ./mix-sched <#Intermediate Results to Write> <Number of Iterations per Write>
+ ./mix-sched <#Intermediate Results to Write> <Number of Iterations per Write> <Output Filename>
+ ./mix-sched <#Intermediate Results to Write> <Number of Iterations per Write> <Output Filename> <Scheduling Policy>
+ ./mix-sched <#Intermediate Results to Write> <Number of Iterations per Write> <Output Filename> <Scheduling Policy> <# Child Processes>
 
 rr_quantum:
  sudo ./rr_quantum
+
+testscript:
+ ./testscript
+ sudo ./testscript
