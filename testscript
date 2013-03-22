@@ -29,7 +29,7 @@ printf "Building code...\n"
 $MAKE clean
 $MAKE
 
-printf "Making $HIGH copies of rwinput so each process has its own identical input file...\n\n"
+printf "Making $HIGH copies of rwinput so each process has its own identical input file...\n"
 for i in $(seq 1 $HIGH); do cp rwinput rwinput-$i; done
 echo
 
@@ -72,7 +72,7 @@ for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     techo ""
     for CHILDREN in $LOW $MEDIUM $HIGH; do
         techo "CHILD PROCESSES = $CHILDREN"
-        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./mix-sched $INTERMEDIATERESULTS $ITERATIONSPERWRITE $SCHED $CHILDREN > /dev/null
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./mix-sched $INTERMEDIATERESULTS $ITERATIONSPERWRITE default $SCHED $CHILDREN > /dev/null
         techo ""
     done
 done
