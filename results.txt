@@ -1,0 +1,72 @@
+Calculating pi over 100000 iterations
+using SCHED_OTHER scheduler with 10 simultaneous processes...
+wall=0.01, user=0.04, system=0.00, CPU=235%, preempted=15, blocked=20
+
+Calculating pi over 100000 iterations
+using SCHED_OTHER scheduler with 50 simultaneous processes...
+wall=0.07, user=0.19, system=0.00, CPU=253%, preempted=112, blocked=98
+
+Calculating pi over 100000 iterations
+using SCHED_OTHER scheduler with 500 simultaneous processes...
+wall=0.68, user=1.94, system=0.06, CPU=293%, preempted=647, blocked=648
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_OTHER scheduler with 10 simultaneous processes...
+wall=1.13, user=0.00, system=0.00, CPU=0%, preempted=6, blocked=36
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_OTHER scheduler with 50 simultaneous processes...
+wall=0.09, user=0.00, system=0.00, CPU=0%, preempted=46, blocked=237
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_OTHER scheduler with 500 simultaneous processes...
+wall=0.19, user=0.00, system=0.01, CPU=6%, preempted=167, blocked=2030
+
+Calculating pi over 100000 iterations
+using SCHED_FIFO scheduler with 10 simultaneous processes...
+wall=0.05, user=0.04, system=0.00, CPU=78%, preempted=1, blocked=12
+
+Calculating pi over 100000 iterations
+using SCHED_FIFO scheduler with 50 simultaneous processes...
+wall=0.24, user=0.18, system=0.01, CPU=81%, preempted=1, blocked=52
+
+Calculating pi over 100000 iterations
+using SCHED_FIFO scheduler with 500 simultaneous processes...
+wall=1.69, user=1.89, system=0.11, CPU=118%, preempted=1, blocked=505
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_FIFO scheduler with 10 simultaneous processes...
+wall=0.13, user=0.00, system=0.00, CPU=0%, preempted=13, blocked=46
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_FIFO scheduler with 50 simultaneous processes...
+wall=0.10, user=0.00, system=0.00, CPU=0%, preempted=32, blocked=229
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_FIFO scheduler with 500 simultaneous processes...
+wall=0.19, user=0.00, system=0.01, CPU=6%, preempted=266, blocked=2148
+
+Calculating pi over 100000 iterations
+using SCHED_RR scheduler with 10 simultaneous processes...
+wall=0.05, user=0.04, system=0.00, CPU=78%, preempted=1, blocked=12
+
+Calculating pi over 100000 iterations
+using SCHED_RR scheduler with 50 simultaneous processes...
+wall=0.24, user=0.19, system=0.00, CPU=81%, preempted=1, blocked=52
+
+Calculating pi over 100000 iterations
+using SCHED_RR scheduler with 500 simultaneous processes...
+wall=2.45, user=1.90, system=0.10, CPU=81%, preempted=1, blocked=502
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_RR scheduler with 10 simultaneous processes...
+wall=1.50, user=0.00, system=0.00, CPU=0%, preempted=9, blocked=33
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_RR scheduler with 50 simultaneous processes...
+wall=0.11, user=0.00, system=0.00, CPU=0%, preempted=45, blocked=240
+
+Copying 1024 bytes in blocks of 1024 from rwinput to rwoutput
+using SCHED_RR scheduler with 500 simultaneous processes...
+wall=0.19, user=0.00, system=0.00, CPU=6%, preempted=178, blocked=2136
+

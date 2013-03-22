@@ -11,11 +11,13 @@
 LOW=10
 MEDIUM=50
 HIGH=500
+RESFILE="results.txt"
 #ITERATIONS=100000000
 ITERATIONS=100000
-BYTESTOCOPY=102400
+#BYTESTOCOPY=102400
+BYTESTOCOPY=1024
 BLOCKSIZE=1024
-TIMEFORMAT="wall=%e user=%U system=%S CPU=%P preempted=%c blocked=%w"
+TIMEFORMAT="wall=%e, user=%U, system=%S, CPU=%P, preempted=%c, blocked=%w"
 MAKE="make -s"
 
 echo Building code...
@@ -30,16 +32,16 @@ printf "Starting test runs...\n"
 
 for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     for CHILDREN in $LOW $MEDIUM $HIGH; do
-        echo Calculating pi over $ITERATIONS iterations
-        echo using $SCHED scheduler with $CHILDREN simultaneous processes...
-        INFO=`/usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null`
-        echo $INFO
+        echo Calculating pi over $ITERATIONS iterations | tee -a $RESFILE
+        echo using $SCHED scheduler with $CHILDREN simultaneous processes... | tee -a $RESFILE
+        /usr/bin/time -o $RESFILE -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
+        echo | tee -a $RESFILE
     done
 
     for CHILDREN in $LOW $MEDIUM $HIGH; do
-        echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
-        echo using $SCHED scheduler with $CHILDREN simultaneous processes...
-        INFO=`/usr/bin/time -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default SCHED_OTHER $CHILDREN > /dev/null`
-        echo $INFO
+        echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput | tee -a $RESFILE
+        echo using $SCHED scheduler with $CHILDREN simultaneous processes... | tee -a $RESFILE
+        /usr/bin/time -o $RESFILE -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default SCHED_OTHER $CHILDREN > /dev/null
+        echo | tee -a $RESFILE
     done
 done
