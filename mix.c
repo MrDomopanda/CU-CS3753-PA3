@@ -158,5 +158,11 @@ int main(int argc, char* argv[]) {
         write(outputFD, writeBuffer, 77);
     }
 
+    /* Close Output File Descriptor */
+    if (close(outputFD)) {
+        perror("Failed to close output file");
+        exit(EXIT_FAILURE);
+    }
+
     return EXIT_SUCCESS;
 }
