@@ -16,7 +16,7 @@ techo()
 LOW=10
 MEDIUM=50
 HIGH=500
-RESFILE="results2.txt"
+RESFILE="results.txt"
 ITERATIONS=100000000
 BYTESTOCOPY=102400
 BLOCKSIZE=1024
@@ -35,33 +35,33 @@ echo
 
 printf "Starting test runs...\n\n"
 
-#for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
-    #techo "=============================================================================="
-    #techo "TEST :: CPU BOUND"
-    #techo "SCHEDULER       = $SCHED"
-    #techo "ITERATIONS      = $ITERATIONS"
-    #techo ""
-    #for CHILDREN in $LOW $MEDIUM $HIGH; do
-        #techo "CHILD PROCESSES = $CHILDREN"
-        #/usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
-        ##{ /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null ; } 2>> temp.txt
-        #techo ""
-    #done
-#done
+for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
+    techo "=============================================================================="
+    techo "TEST :: CPU BOUND"
+    techo "SCHEDULER       = $SCHED"
+    techo "ITERATIONS      = $ITERATIONS"
+    techo ""
+    for CHILDREN in $LOW $MEDIUM $HIGH; do
+        techo "CHILD PROCESSES = $CHILDREN"
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
+        #{ /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null ; } 2>> temp.txt
+        techo ""
+    done
+done
 
-#for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
-    #techo "=============================================================================="
-    #techo "TEST :: I/O BOUND"
-    #techo "SCHEDULER       = $SCHED"
-    #techo "BYTES TO COPY   = $BYTESTOCOPY"
-    #techo "BLOCK SIZE      = $BLOCKSIZE"
-    #techo ""
-    #for CHILDREN in $LOW $MEDIUM $HIGH; do
-        #techo "CHILD PROCESSES = $CHILDREN"
-        #/usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default $SCHED $CHILDREN > /dev/null
-        #techo ""
-    #done
-#done
+for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
+    techo "=============================================================================="
+    techo "TEST :: I/O BOUND"
+    techo "SCHEDULER       = $SCHED"
+    techo "BYTES TO COPY   = $BYTESTOCOPY"
+    techo "BLOCK SIZE      = $BLOCKSIZE"
+    techo ""
+    for CHILDREN in $LOW $MEDIUM $HIGH; do
+        techo "CHILD PROCESSES = $CHILDREN"
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default $SCHED $CHILDREN > /dev/null
+        techo ""
+    done
+done
 
 for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     techo "=============================================================================="

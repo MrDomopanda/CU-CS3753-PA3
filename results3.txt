@@ -1,0 +1,132 @@
+==============================================================================
+TEST :: CPU BOUND
+SCHEDULER       = SCHED_OTHER
+ITERATIONS      = 100000000
+
+CHILD PROCESSES = 10
+wall=12.83, user=50.33, system=0.05, CPU=392%, preempted=6925, blocked=21
+
+CHILD PROCESSES = 50
+wall=63.35, user=252.13, system=0.05, CPU=398%, preempted=65678, blocked=105
+
+CHILD PROCESSES = 500
+wall=892.69, user=3544.59, system=1.30, CPU=397%, preempted=921181, blocked=1014
+
+==============================================================================
+TEST :: CPU BOUND
+SCHEDULER       = SCHED_FIFO
+ITERATIONS      = 100000000
+
+CHILD PROCESSES = 10
+wall=23.44, user=69.17, system=0.00, CPU=295%, preempted=55, blocked=15
+
+CHILD PROCESSES = 50
+wall=97.68, user=348.50, system=0.12, CPU=356%, preempted=345, blocked=55
+
+CHILD PROCESSES = 500
+wall=938.54, user=3564.14, system=1.13, CPU=379%, preempted=3733, blocked=505
+
+==============================================================================
+TEST :: CPU BOUND
+SCHEDULER       = SCHED_RR
+ITERATIONS      = 100000000
+
+CHILD PROCESSES = 10
+wall=21.32, user=71.94, system=0.02, CPU=337%, preempted=246, blocked=17
+
+CHILD PROCESSES = 50
+wall=94.10, user=352.11, system=0.07, CPU=374%, preempted=1327, blocked=78
+
+CHILD PROCESSES = 500
+wall=937.95, user=3561.11, system=0.81, CPU=379%, preempted=13487, blocked=593
+
+==============================================================================
+TEST :: I/O BOUND
+SCHEDULER       = SCHED_OTHER
+BYTES TO COPY   = 102400
+BLOCK SIZE      = 1024
+
+CHILD PROCESSES = 10
+wall=10.98, user=0.03, system=0.05, CPU=0%, preempted=27, blocked=4012
+
+CHILD PROCESSES = 50
+wall=19.86, user=0.02, system=0.06, CPU=0%, preempted=102, blocked=16814
+
+CHILD PROCESSES = 500
+wall=63.02, user=0.09, system=0.08, CPU=0%, preempted=541, blocked=166311
+
+==============================================================================
+TEST :: I/O BOUND
+SCHEDULER       = SCHED_FIFO
+BYTES TO COPY   = 102400
+BLOCK SIZE      = 1024
+
+CHILD PROCESSES = 10
+wall=5.53, user=0.00, system=0.00, CPU=0%, preempted=1, blocked=2012
+
+CHILD PROCESSES = 50
+wall=10.05, user=0.00, system=0.00, CPU=0%, preempted=2, blocked=10052
+
+CHILD PROCESSES = 500
+wall=53.22, user=0.01, system=0.05, CPU=0%, preempted=1, blocked=147790
+
+==============================================================================
+TEST :: I/O BOUND
+SCHEDULER       = SCHED_RR
+BYTES TO COPY   = 102400
+BLOCK SIZE      = 1024
+
+CHILD PROCESSES = 10
+wall=5.38, user=0.00, system=0.00, CPU=0%, preempted=1, blocked=2012
+
+CHILD PROCESSES = 50
+wall=9.74, user=0.00, system=0.00, CPU=0%, preempted=1, blocked=10052
+
+CHILD PROCESSES = 500
+wall=55.14, user=0.03, system=0.08, CPU=0%, preempted=1, blocked=165565
+
+==============================================================================
+TEST :: MIXED
+SCHEDULER       = SCHED_OTHER
+INTERMED WRITES = 50
+ITERATIONS/WRITE= 1000000
+
+CHILD PROCESSES = 10
+wall=21.78, user=25.57, system=0.05, CPU=117%, preempted=3675, blocked=4881
+
+CHILD PROCESSES = 50
+wall=45.31, user=125.82, system=0.20, CPU=278%, preempted=33757, blocked=25191
+
+CHILD PROCESSES = 500
+wall=426.77, user=1664.64, system=2.89, CPU=390%, preempted=490777, blocked=235389
+
+==============================================================================
+TEST :: MIXED
+SCHEDULER       = SCHED_FIFO
+INTERMED WRITES = 50
+ITERATIONS/WRITE= 1000000
+
+CHILD PROCESSES = 10
+wall=22.86, user=30.13, system=0.06, CPU=132%, preempted=1, blocked=4189
+
+CHILD PROCESSES = 50
+wall=53.02, user=153.78, system=0.25, CPU=290%, preempted=2, blocked=21428
+
+CHILD PROCESSES = 500
+wall=467.74, user=1760.98, system=2.67, CPU=377%, preempted=1756, blocked=169198
+
+==============================================================================
+TEST :: MIXED
+SCHEDULER       = SCHED_RR
+INTERMED WRITES = 50
+ITERATIONS/WRITE= 1000000
+
+CHILD PROCESSES = 10
+wall=22.20, user=30.07, system=0.06, CPU=135%, preempted=150, blocked=4336
+
+CHILD PROCESSES = 50
+wall=57.06, user=152.13, system=0.12, CPU=266%, preempted=1315, blocked=21765
+
+CHILD PROCESSES = 500
+wall=466.12, user=1766.21, system=2.30, CPU=379%, preempted=19033, blocked=161616
+
