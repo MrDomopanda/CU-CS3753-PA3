@@ -20,6 +20,8 @@ RESFILE="results.txt"
 ITERATIONS=100000000
 BYTESTOCOPY=102400
 BLOCKSIZE=1024
+INTERMEDIATERESULTS=100
+ITERATIONSPERWRITE=100000
 TIMEFORMAT="wall=%e, user=%U, system=%S, CPU=%P, preempted=%c, blocked=%w"
 MAKE="make -s"
 
@@ -33,19 +35,19 @@ echo
 
 printf "Starting test runs...\n\n"
 
-for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
-    techo "=============================================================================="
-    techo "TEST :: CPU BOUND"
-    techo "SCHEDULER       = $SCHED"
-    techo "ITERATIONS      = $ITERATIONS"
-    techo ""
-    for CHILDREN in $LOW $MEDIUM $HIGH; do
-        techo "CHILD PROCESSES = $CHILDREN"
-        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
-        #{ /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null ; } 2>> temp.txt
-        techo ""
-    done
-done
+#for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
+    #techo "=============================================================================="
+    #techo "TEST :: CPU BOUND"
+    #techo "SCHEDULER       = $SCHED"
+    #techo "ITERATIONS      = $ITERATIONS"
+    #techo ""
+    #for CHILDREN in $LOW $MEDIUM $HIGH; do
+        #techo "CHILD PROCESSES = $CHILDREN"
+        #/usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
+        ##{ /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null ; } 2>> temp.txt
+        #techo ""
+    #done
+#done
 
 for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     techo "=============================================================================="
@@ -56,7 +58,21 @@ for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     techo ""
     for CHILDREN in $LOW $MEDIUM $HIGH; do
         techo "CHILD PROCESSES = $CHILDREN"
-        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default SCHED_OTHER $CHILDREN > /dev/null
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default $SCHED $CHILDREN > /dev/null
+        techo ""
+    done
+done
+
+for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
+    techo "=============================================================================="
+    techo "TEST :: MIXED"
+    techo "SCHEDULER       = $SCHED"
+    techo "INTERMED WRITES = $INTERMEDIATERESULTS"
+    techo "ITERATIONS/WRITE= $ITERATIONSPERWRITE"
+    techo ""
+    for CHILDREN in $LOW $MEDIUM $HIGH; do
+        techo "CHILD PROCESSES = $CHILDREN"
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./mix-sched $INTERMEDIATERESULTS $ITERATIONSPERWRITE $SCHED $CHILDREN > /dev/null
         techo ""
     done
 done
