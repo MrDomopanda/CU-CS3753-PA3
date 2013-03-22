@@ -36,8 +36,8 @@ int main(int argc, char* argv[]){
     double x, y;
     double inCircle = 0.0;
     double inSquare = 0.0;
-    double pCircle = 0.0;
-    double piCalc = 0.0;
+    double pCircle  = 0.0;
+    double piCalc   = 0.0;
 
     /* Process program arguments to select iterations */
     /* Set default iterations if not supplied */
@@ -52,7 +52,6 @@ int main(int argc, char* argv[]){
             exit(EXIT_FAILURE);
         }
     }
-    printf("iterations = %li\n", iterations);
 
     /* Calculate pi using statistical method across all iterations*/
     for (i = 0; i < iterations; ++i) {

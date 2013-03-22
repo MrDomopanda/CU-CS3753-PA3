@@ -10,7 +10,7 @@ INPUTFILESIZEBYTES = $(shell echo $(MEGA)\*$(INPUTFILESIZEMEGABYTES) | bc)
 INPUTBLOCKSIZEBYTES = $(KILO)
 INPUTBLOCKS = $(shell echo $(INPUTFILESIZEBYTES)\/$(INPUTBLOCKSIZEBYTES) | bc)
 
-EXECUTABLES = pi pi-sched rw rw-sched rr_quantum
+EXECUTABLES = pi pi-sched rw rw-sched rr_quantum mix
 OBJECTS = $(EXECUTABLES:%=%.o)
 #OBJECTS = $(foreach exe,$(EXECUTABLES),$(exe).o)
 
@@ -30,6 +30,9 @@ rw: rw.o rwinput
 rw-sched: rw-sched.o rw
 	$(CC) $(LFLAGS) rw-sched.o -o $@ -lm
 
+mix: mix.o
+	$(CC) $(LFLAGS) $^ -o $@ -lm
+
 rr_quantum: rr_quantum.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
 
@@ -48,5 +51,6 @@ clean: testclean
 	rm -f handout/*.aux
 
 testclean:
+	rm -f mixoutput*
 	rm -f rwoutput*
 	rm -f rwinput*
