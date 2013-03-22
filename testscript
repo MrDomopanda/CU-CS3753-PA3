@@ -8,14 +8,17 @@
 # Description:
 #   A bash script to run each test case and gather the relevant data.
 
+techo()
+{
+    echo "$1" | tee -a "$RESFILE"
+}
+
 LOW=10
 MEDIUM=50
 HIGH=500
 RESFILE="results.txt"
-#ITERATIONS=100000000
-ITERATIONS=100000
-#BYTESTOCOPY=102400
-BYTESTOCOPY=1024
+ITERATIONS=100000000
+BYTESTOCOPY=102400
 BLOCKSIZE=1024
 TIMEFORMAT="wall=%e, user=%U, system=%S, CPU=%P, preempted=%c, blocked=%w"
 MAKE="make -s"
@@ -28,20 +31,30 @@ echo Making $HIGH copies of rwinput so each process has its own identical input 
 for i in $(seq 1 $HIGH); do cp rwinput rwinput-$i; done
 echo
 
-printf "Starting test runs...\n"
+printf "Starting test runs...\n\n"
 
 for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
+    techo "=============================================================================="
+    techo "TEST :: CPU BOUND"
+    techo "SCHEDULER       = $SCHED"
+    techo "ITERATIONS      = $ITERATIONS"
+    techo ""
     for CHILDREN in $LOW $MEDIUM $HIGH; do
-        echo Calculating pi over $ITERATIONS iterations | tee -a $RESFILE
-        echo using $SCHED scheduler with $CHILDREN simultaneous processes... | tee -a $RESFILE
-        /usr/bin/time -o $RESFILE -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
-        echo | tee -a $RESFILE
+        techo "CHILD PROCESSES = $CHILDREN"
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null
+        #{ /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null ; } 2>> temp.txt
+        techo ""
     done
 
+    techo "=============================================================================="
+    techo "TEST :: I/O BOUND"
+    techo "SCHEDULER       = $SCHED"
+    techo "BYTES TO COPY   = $BYTESTOCOPY"
+    techo "BLOCK SIZE      = $BLOCKSIZE"
+    techo ""
     for CHILDREN in $LOW $MEDIUM $HIGH; do
-        echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput | tee -a $RESFILE
-        echo using $SCHED scheduler with $CHILDREN simultaneous processes... | tee -a $RESFILE
-        /usr/bin/time -o $RESFILE -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default SCHED_OTHER $CHILDREN > /dev/null
-        echo | tee -a $RESFILE
+        techo "CHILD PROCESSES = $CHILDREN"
+        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default SCHED_OTHER $CHILDREN > /dev/null
+        techo ""
     done
 done
