@@ -1,87 +1,87 @@
 ==============================================================================
 TEST :: CPU BOUND
 SCHEDULER       = SCHED_OTHER
-ITERATIONS      = 100000
+ITERATIONS      = 100000000
 
 CHILD PROCESSES = 10
-wall=0.01, user=0.04, system=0.00, CPU=?3P, preempted=21, blocked=20
+wall=12.73, user=50.40, system=0.03, CPU=396%, preempted=6841, blocked=23
 
 CHILD PROCESSES = 50
-wall=0.06, user=0.19, system=0.00, CPU=?3P, preempted=97, blocked=100
+wall=63.38, user=251.92, system=0.14, CPU=397%, preempted=65188, blocked=103
 
 CHILD PROCESSES = 500
-wall=0.67, user=1.95, system=0.05, CPU=?3P, preempted=678, blocked=575
+wall=873.94, user=3480.89, system=0.81, CPU=398%, preempted=890523, blocked=1013
 
 ==============================================================================
 TEST :: I/O BOUND
 SCHEDULER       = SCHED_OTHER
-BYTES TO COPY   = 1024
+BYTES TO COPY   = 102400
 BLOCK SIZE      = 1024
 
 CHILD PROCESSES = 10
-wall=1.15, user=0.00, system=0.00, CPU=?3P, preempted=9, blocked=44
+wall=7.55, user=0.00, system=0.03, CPU=0%, preempted=36, blocked=2023
 
 CHILD PROCESSES = 50
-wall=0.08, user=0.00, system=0.00, CPU=?3P, preempted=20, blocked=215
+wall=19.09, user=0.01, system=0.06, CPU=0%, preempted=204, blocked=17067
 
 CHILD PROCESSES = 500
-wall=0.19, user=0.00, system=0.01, CPU=?3P, preempted=249, blocked=2460
+wall=65.33, user=0.01, system=0.08, CPU=0%, preempted=661, blocked=163125
 
 ==============================================================================
 TEST :: CPU BOUND
 SCHEDULER       = SCHED_FIFO
-ITERATIONS      = 100000
+ITERATIONS      = 100000000
 
 CHILD PROCESSES = 10
-wall=0.05, user=0.04, system=0.00, CPU=?3P, preempted=1, blocked=12
+wall=16.17, user=50.01, system=0.01, CPU=309%, preempted=37, blocked=15
 
 CHILD PROCESSES = 50
-wall=0.53, user=0.35, system=0.02, CPU=?3P, preempted=1, blocked=52
+wall=75.11, user=275.70, system=0.06, CPU=367%, preempted=273, blocked=55
 
 CHILD PROCESSES = 500
-wall=1.96, user=2.38, system=0.14, CPU=?3P, preempted=1, blocked=505
+wall=896.43, user=3389.46, system=0.57, CPU=378%, preempted=3526, blocked=506
 
 ==============================================================================
 TEST :: I/O BOUND
 SCHEDULER       = SCHED_FIFO
-BYTES TO COPY   = 1024
+BYTES TO COPY   = 102400
 BLOCK SIZE      = 1024
 
 CHILD PROCESSES = 10
-wall=0.12, user=0.00, system=0.00, CPU=?3P, preempted=14, blocked=45
+wall=12.08, user=0.00, system=0.08, CPU=0%, preempted=107, blocked=3866
 
 CHILD PROCESSES = 50
-wall=0.09, user=0.00, system=0.00, CPU=?3P, preempted=58, blocked=237
+wall=16.64, user=0.01, system=0.06, CPU=0%, preempted=186, blocked=16923
 
 CHILD PROCESSES = 500
-wall=0.20, user=0.00, system=0.01, CPU=?3P, preempted=226, blocked=2498
+wall=61.65, user=0.07, system=0.11, CPU=0%, preempted=615, blocked=164112
 
 ==============================================================================
 TEST :: CPU BOUND
 SCHEDULER       = SCHED_RR
-ITERATIONS      = 100000
+ITERATIONS      = 100000000
 
 CHILD PROCESSES = 10
-wall=0.11, user=0.07, system=0.00, CPU=?3P, preempted=1, blocked=12
+wall=14.83, user=49.99, system=0.00, CPU=337%, preempted=171, blocked=19
 
 CHILD PROCESSES = 50
-wall=0.53, user=0.35, system=0.02, CPU=?3P, preempted=1, blocked=52
+wall=75.39, user=277.29, system=0.06, CPU=367%, preempted=1047, blocked=77
 
 CHILD PROCESSES = 500
-wall=3.21, user=3.80, system=0.18, CPU=?3P, preempted=1, blocked=508
+wall=913.14, user=3474.32, system=0.60, CPU=380%, preempted=13310, blocked=796
 
 ==============================================================================
 TEST :: I/O BOUND
 SCHEDULER       = SCHED_RR
-BYTES TO COPY   = 1024
+BYTES TO COPY   = 102400
 BLOCK SIZE      = 1024
 
 CHILD PROCESSES = 10
-wall=0.11, user=0.00, system=0.00, CPU=?3P, preempted=13, blocked=47
+wall=13.00, user=0.04, system=0.04, CPU=0%, preempted=122, blocked=3885
 
 CHILD PROCESSES = 50
-wall=0.09, user=0.00, system=0.00, CPU=?3P, preempted=38, blocked=216
+wall=16.48, user=0.02, system=0.05, CPU=0%, preempted=284, blocked=16856
 
 CHILD PROCESSES = 500
-wall=0.16, user=0.00, system=0.01, CPU=?3P, preempted=268, blocked=2345
+wall=62.93, user=0.02, system=0.08, CPU=0%, preempted=595, blocked=162507
 

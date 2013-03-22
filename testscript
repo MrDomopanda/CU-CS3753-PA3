@@ -23,11 +23,11 @@ BLOCKSIZE=1024
 TIMEFORMAT="wall=%e, user=%U, system=%S, CPU=%P, preempted=%c, blocked=%w"
 MAKE="make -s"
 
-echo Building code...
+printf "Building code...\n"
 $MAKE clean
 $MAKE
 
-echo Making $HIGH copies of rwinput so each process has its own identical input file...
+printf "Making $HIGH copies of rwinput so each process has its own identical input file...\n\n"
 for i in $(seq 1 $HIGH); do cp rwinput rwinput-$i; done
 echo
 
