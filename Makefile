@@ -41,13 +41,13 @@ rwinput: Makefile
 
 clean: testclean
 	rm -f $(EXECUTABLES)
-	rm -f rwinput
+	rm -f rwinput*
 	rm -f *.o
 	rm -f *~
 	rm -f handout/*~
 	rm -f handout/*.log
 	rm -f handout/*.aux
-	printf "\nWORKS\n$(OBJECTS)\n"
 
 testclean:
 	rm -f rwoutput*
+	rm -f rwinput*

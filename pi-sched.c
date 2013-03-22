@@ -114,6 +114,7 @@ int main(int argc, char* argv[]){
     /* Fork children child processes */
     for (i = 0; i < children; ++i) {
         if ((pid = fork()) == -1) exit(EXIT_FAILURE);   /* Fork Failed */
+
         if (pid == 0) { /* Child process */
             // execl(exe, argv[0], argv[1], argv[2], ..., NULL)
             execl("pi", "pi", argv[1], NULL);

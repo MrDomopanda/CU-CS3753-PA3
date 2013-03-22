@@ -31,6 +31,7 @@ int main(int argc, char* argv[]){
 
     ssize_t transfersize = 0;
     ssize_t blocksize    = 0;
+    char    inputFilenameBase[MAXFILENAMELENGTH];
     char    inputFilename[MAXFILENAMELENGTH];
     char    outputFilenameBase[MAXFILENAMELENGTH];
     int     policy;
@@ -38,6 +39,7 @@ int main(int argc, char* argv[]){
 
     struct sched_param param;
     int    i;
+    int    rv;
     pid_t  pid;
 
     /* Process program arguments to select run-time parameters */
@@ -52,6 +54,7 @@ int main(int argc, char* argv[]){
         }
         else if (transfersize < 0) {
             fprintf(stderr, "Bad transfersize value\n");
+            fprintf(stderr, "  Default value = %d\n", DEFAULT_TRANSFERSIZE);
             exit(EXIT_FAILURE);
         }
     }
@@ -67,6 +70,7 @@ int main(int argc, char* argv[]){
         }
         else if (blocksize < 0) {
             fprintf(stderr, "Bad blocksize value\n");
+            fprintf(stderr, "  Default value = %d\n", DEFAULT_BLOCKSIZE);
             exit(EXIT_FAILURE);
         }
     }
@@ -77,14 +81,19 @@ int main(int argc, char* argv[]){
             fprintf(stderr, "Default input filename too long\n");
             exit(EXIT_FAILURE);
         }
-        strncpy(inputFilename, DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH);
+        strncpy(inputFilenameBase, DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH);
     }
     else {
-        if (strnlen(argv[3], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH) {
-            fprintf(stderr, "Input filename too long\n");
-            exit(EXIT_FAILURE);
+        if (!strcmp(argv[3], "default")) {
+            strncpy(inputFilenameBase, DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH);
         }
-        strncpy(inputFilename, argv[3], MAXFILENAMELENGTH);
+        else {
+            if (strnlen(argv[3], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH) {
+                fprintf(stderr, "Input filename too long\n");
+                exit(EXIT_FAILURE);
+            }
+            strncpy(inputFilenameBase, argv[3], MAXFILENAMELENGTH);
+        }
     }
 
     /* Set supplied output filename base or default if not supplied */
@@ -163,10 +172,23 @@ int main(int argc, char* argv[]){
 
     /* Fork children child processes */
     for (i = 0; i < children; ++i) {
+        rv = snprintf(inputFilename, MAXFILENAMELENGTH, "%s-%d",
+                inputFilenameBase, i+1);
+        if (rv > MAXFILENAMELENGTH) {
+            fprintf(stderr, "Output filename length exceeds limit of %d characters.\n",
+                    MAXFILENAMELENGTH);
+            exit(EXIT_FAILURE);
+        }
+        else if (rv < 0) {
+            perror("Failed to generate output filename");
+            exit(EXIT_FAILURE);
+        }
+
         if ((pid = fork()) == -1) exit(EXIT_FAILURE);   /* Fork Failed */
+
         if (pid == 0) { /* Child process */
             // execl(exe, argv[0], argv[1], argv[2], ..., NULL)
-            execl("rw", "rw", argv[1], argv[2], argv[3], argv[4], NULL);
+            execl("rw", "rw", argv[1], argv[2], inputFilename, argv[4], NULL);
             exit(EXIT_SUCCESS);
         } else {        /* Parent process */
             printf("Forked %d pid = %d\n", i, pid);

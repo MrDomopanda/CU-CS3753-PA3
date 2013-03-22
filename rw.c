@@ -64,6 +64,7 @@ int main(int argc, char* argv[]){
         }
         else if (transfersize < 0) {
             fprintf(stderr, "Bad transfersize value\n");
+            fprintf(stderr, "  Default value = %d\n", DEFAULT_TRANSFERSIZE);
             exit(EXIT_FAILURE);
         }
     }
@@ -79,6 +80,7 @@ int main(int argc, char* argv[]){
         }
         else if (blocksize < 0) {
             fprintf(stderr, "Bad blocksize value\n");
+            fprintf(stderr, "  Default value = %d\n", DEFAULT_BLOCKSIZE);
             exit(EXIT_FAILURE);
         }
     }
@@ -92,11 +94,16 @@ int main(int argc, char* argv[]){
         strncpy(inputFilename, DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH);
     }
     else {
-        if (strnlen(argv[3], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH) {
-            fprintf(stderr, "Input filename too long\n");
-            exit(EXIT_FAILURE);
+        if (!strcmp(argv[3], "default")) {
+            strncpy(inputFilename, DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH);
         }
-        strncpy(inputFilename, argv[3], MAXFILENAMELENGTH);
+        else {
+            if (strnlen(argv[3], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH) {
+                fprintf(stderr, "Input filename too long\n");
+                exit(EXIT_FAILURE);
+            }
+            strncpy(inputFilename, argv[3], MAXFILENAMELENGTH);
+        }
     }
 
     /* Set supplied output filename base or default if not supplied */
@@ -120,7 +127,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    /* Confirm blocksize is multiple of and less than transfersize*/
+    /* Confirm blocksize is multiple of and less than transfersize */
     if (blocksize > transfersize) {
         fprintf(stderr, "blocksize can not exceed transfersize\n");
         exit(EXIT_FAILURE);
@@ -143,7 +150,7 @@ int main(int argc, char* argv[]){
         exit(EXIT_FAILURE);
     }
 
-    /* Open Output File Descriptor in Write Only mode with standard permissions*/
+    /* Open Output File Descriptor in Write Only mode with standard permissions */
     rv = snprintf(outputFilename, MAXFILENAMELENGTH, "%s-%d",
             outputFilenameBase, getpid());
     if (rv > MAXFILENAMELENGTH) {
