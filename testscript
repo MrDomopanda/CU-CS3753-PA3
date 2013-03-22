@@ -45,7 +45,9 @@ for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
         #{ /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null ; } 2>> temp.txt
         techo ""
     done
+done
 
+for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     techo "=============================================================================="
     techo "TEST :: I/O BOUND"
     techo "SCHEDULER       = $SCHED"
