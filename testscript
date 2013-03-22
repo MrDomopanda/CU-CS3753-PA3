@@ -16,12 +16,12 @@ techo()
 LOW=10
 MEDIUM=50
 HIGH=500
-RESFILE="results.txt"
+RESFILE="results2.txt"
 ITERATIONS=100000000
 BYTESTOCOPY=102400
 BLOCKSIZE=1024
-INTERMEDIATERESULTS=100
-ITERATIONSPERWRITE=100000
+INTERMEDIATERESULTS=50
+ITERATIONSPERWRITE=1000000
 TIMEFORMAT="wall=%e, user=%U, system=%S, CPU=%P, preempted=%c, blocked=%w"
 MAKE="make -s"
 
@@ -49,19 +49,19 @@ printf "Starting test runs...\n\n"
     #done
 #done
 
-for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
-    techo "=============================================================================="
-    techo "TEST :: I/O BOUND"
-    techo "SCHEDULER       = $SCHED"
-    techo "BYTES TO COPY   = $BYTESTOCOPY"
-    techo "BLOCK SIZE      = $BLOCKSIZE"
-    techo ""
-    for CHILDREN in $LOW $MEDIUM $HIGH; do
-        techo "CHILD PROCESSES = $CHILDREN"
-        /usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default $SCHED $CHILDREN > /dev/null
-        techo ""
-    done
-done
+#for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
+    #techo "=============================================================================="
+    #techo "TEST :: I/O BOUND"
+    #techo "SCHEDULER       = $SCHED"
+    #techo "BYTES TO COPY   = $BYTESTOCOPY"
+    #techo "BLOCK SIZE      = $BLOCKSIZE"
+    #techo ""
+    #for CHILDREN in $LOW $MEDIUM $HIGH; do
+        #techo "CHILD PROCESSES = $CHILDREN"
+        #/usr/bin/time -o "$RESFILE" -a -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default $SCHED $CHILDREN > /dev/null
+        #techo ""
+    #done
+#done
 
 for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     techo "=============================================================================="
