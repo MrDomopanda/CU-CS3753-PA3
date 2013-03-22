@@ -41,7 +41,6 @@ rwinput: Makefile
 
 clean: testclean
 	rm -f $(EXECUTABLES)
-	rm -f rwinput*
 	rm -f *.o
 	rm -f *~
 	rm -f handout/*~

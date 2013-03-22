@@ -1,13 +1,12 @@
-#/!/bin/bash
+#!/bin/bash
 
-#File: testscript
-#Author: Andy Sayler
-#Project: CSCI 3753 Programming Assignment 3
-#Create Date: 2012/03/09
-#Modify Date: 2012/03/21
-#Description:
-#   A simple bash script to run a single copy of each test case
-#   and gather the relevant data.
+# File:         testscript
+# Author:       Stephen Bennett
+# Project:      CSCI 3753 Programming Assignment 3
+# Create Date:  2013/03/21
+# Modify Date:  2013/03/21
+# Description:
+#   A bash script to run each test case and gather the relevant data.
 
 LOW=10
 MEDIUM=50
@@ -27,19 +26,19 @@ echo Making $HIGH copies of rwinput so each process has its own identical input 
 for i in $(seq 1 $HIGH); do cp rwinput rwinput-$i; done
 echo
 
-echo Starting test runs...
-echo
+printf "Starting test runs...\n"
 
 for SCHED in SCHED_OTHER SCHED_FIFO SCHED_RR; do
     for CHILDREN in $LOW $MEDIUM $HIGH; do
-        echo Calculating pi over $ITERATIONS iterations using $SCHED with $CHILDREN simultaneous processes...
+        echo Calculating pi over $ITERATIONS iterations
+        echo using $SCHED scheduler with $CHILDREN simultaneous processes...
         INFO=`/usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $CHILDREN > /dev/null`
         echo $INFO
     done
 
     for CHILDREN in $LOW $MEDIUM $HIGH; do
         echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
-        echo using $SCHED with $CHILDREN simultaneous processes...
+        echo using $SCHED scheduler with $CHILDREN simultaneous processes...
         INFO=`/usr/bin/time -f "$TIMEFORMAT" ./rw-sched $BYTESTOCOPY $BLOCKSIZE default default SCHED_OTHER $CHILDREN > /dev/null`
         echo $INFO
     done
