@@ -1,0 +1,27 @@
+Kernel:                 Linux 3.5.0-26-generic (x86_64)
+Compiled:               #42-Ubuntu SMP Fri Mar 8 23:18:20 UTC 2013
+Distribution:           Linux Mint 14 Nadia
+Default C Compiler:     GNU C Compiler version 4.7.2 (Ubuntu/Linaro 4.7.2-2ubuntu1)
+
+Processor:              Intel® Core™ i5-2500K CPU @ 3.30GHz × 4
+Architecture:           x86_64
+CPU op-mode(s):         32-bit, 64-bit
+Byte Order:             Little Endian
+CPU(s):                 4
+On-line CPU(s) list:    0-3
+Thread(s) per core:     1
+Core(s) per socket:     4
+Socket(s):              1
+NUMA node(s):           1
+Vendor ID:              GenuineIntel
+CPU family:             6
+Model:                  42
+Stepping:               7
+CPU MHz:                1600.000
+BogoMIPS:               6584.90
+Virtualization:         VT-x
+L1d cache:              32K
+L1i cache:              32K
+L2 cache:               256K
+L3 cache:               6144K
+NUMA node0 CPU(s):      0-3
