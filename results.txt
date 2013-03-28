@@ -88,107 +88,17 @@ wall=47.90, user=0.02, system=0.02, CPU=0%, preempted=1, blocked=117478
 ==============================================================================
 TEST :: MIXED
 SCHEDULER       = SCHED_OTHER
-INTERMED WRITES = 100
-ITERATIONS/WRITE= 100000
-
-CHILD PROCESSES = 10
-wall=35.45, user=5.87, system=0.16, CPU=17%, preempted=1499, blocked=11017
-
-CHILD PROCESSES = 50
-wall=46.68, user=26.27, system=0.46, CPU=57%, preempted=7605, blocked=51488
-
-CHILD PROCESSES = 500
-wall=149.22, user=251.81, system=3.43, CPU=171%, preempted=93747, blocked=469415
-
-==============================================================================
-TEST :: MIXED
-SCHEDULER       = SCHED_FIFO
-INTERMED WRITES = 100
-ITERATIONS/WRITE= 100000
-
-CHILD PROCESSES = 10
-wall=31.62, user=7.64, system=0.11, CPU=24%, preempted=1, blocked=8891
-
-CHILD PROCESSES = 50
-wall=50.27, user=30.21, system=0.40, CPU=60%, preempted=2, blocked=43122
-
-CHILD PROCESSES = 500
-wall=131.39, user=265.40, system=3.73, CPU=204%, preempted=6, blocked=453515
-
-==============================================================================
-TEST :: MIXED
-SCHEDULER       = SCHED_RR
-INTERMED WRITES = 100
-ITERATIONS/WRITE= 100000
-
-CHILD PROCESSES = 10
-wall=32.82, user=8.68, system=0.10, CPU=26%, preempted=59, blocked=9874
-
-CHILD PROCESSES = 50
-wall=48.22, user=30.76, system=0.39, CPU=64%, preempted=239, blocked=43783
-
-CHILD PROCESSES = 500
-wall=132.96, user=267.49, system=3.01, CPU=203%, preempted=2532, blocked=454747
-
-==============================================================================
-TEST :: CPU BOUND
-SCHEDULER       = SCHED_OTHER
-ITERATIONS      = 100000000
-
-CHILD PROCESSES = 10
-wall=12.89, user=50.56, system=0.06, CPU=392%, preempted=6810, blocked=21
-
-==============================================================================
-TEST :: CPU BOUND
-SCHEDULER       = SCHED_FIFO
-ITERATIONS      = 100000000
-
-CHILD PROCESSES = 10
-wall=15.54, user=50.39, system=0.00, CPU=324%, preempted=41, blocked=15
-
-==============================================================================
-TEST :: CPU BOUND
-SCHEDULER       = SCHED_RR
-ITERATIONS      = 100000000
-
-CHILD PROCESSES = 10
-wall=15.53, user=55.08, system=0.02, CPU=354%, preempted=182, blocked=17
-
-==============================================================================
-TEST :: I/O BOUND
-SCHEDULER       = SCHED_OTHER
-BYTES TO COPY   = 102400
-BLOCK SIZE      = 1024
-
-CHILD PROCESSES = 10
-wall=11.69, user=0.00, system=0.08, CPU=0%, preempted=25, blocked=4011
-
-==============================================================================
-TEST :: I/O BOUND
-SCHEDULER       = SCHED_FIFO
-BYTES TO COPY   = 102400
-BLOCK SIZE      = 1024
-
-CHILD PROCESSES = 10
-wall=5.01, user=0.00, system=0.00, CPU=0%, preempted=1, blocked=2012
-
-==============================================================================
-TEST :: I/O BOUND
-SCHEDULER       = SCHED_RR
-BYTES TO COPY   = 102400
-BLOCK SIZE      = 1024
-
-CHILD PROCESSES = 10
-wall=5.33, user=0.00, system=0.00, CPU=0%, preempted=1, blocked=2012
-
-==============================================================================
-TEST :: MIXED
-SCHEDULER       = SCHED_OTHER
 INTERMED WRITES = 50
 ITERATIONS/WRITE= 1000000
 
 CHILD PROCESSES = 10
 wall=19.61, user=25.31, system=0.06, CPU=129%, preempted=3845, blocked=4966
+
+CHILD PROCESSES = 50
+wall=48.83, user=126.43, system=0.27, CPU=259%, preempted=33109, blocked=25207
+
+CHILD PROCESSES = 500
+wall=391.28, user=1489.02, system=2.49, CPU=381%, preempted=430702, blocked=237800
 
 ==============================================================================
 TEST :: MIXED
@@ -199,6 +109,12 @@ ITERATIONS/WRITE= 1000000
 CHILD PROCESSES = 10
 wall=21.07, user=27.26, system=0.04, CPU=129%, preempted=1, blocked=4434
 
+CHILD PROCESSES = 50
+wall=55.94, user=150.94, system=0.24, CPU=270%, preempted=1, blocked=21302
+
+CHILD PROCESSES = 500
+wall=450.46, user=1695.02, system=2.51, CPU=376%, preempted=1648, blocked=202745
+
 ==============================================================================
 TEST :: MIXED
 SCHEDULER       = SCHED_RR
@@ -207,4 +123,10 @@ ITERATIONS/WRITE= 1000000
 
 CHILD PROCESSES = 10
 wall=22.21, user=30.08, system=0.04, CPU=135%, preempted=125, blocked=4340
+
+CHILD PROCESSES = 50
+wall=58.78, user=151.95, system=0.20, CPU=258%, preempted=1244, blocked=21720
+
+CHILD PROCESSES = 500
+wall=453.42, user=1704.89, system=2.27, CPU=376%, preempted=17887, blocked=190474
 
