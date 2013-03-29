@@ -28,4 +28,4 @@ mixoutput*
 *.dvi
 
 #Temporary LibreOffice Files#
-.~*.xlsx#
+.~*.*#
