@@ -23,8 +23,9 @@ rwoutput*
 mixoutput*
 
 #LaTeX Cruf#
-handout/*.log
-handout/*.aux
+*.log
+*.aux
+*.dvi
 
 #Temporary LibreOffice Files#
 .~*.xlsx#
