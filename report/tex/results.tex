@@ -1,11 +1,19 @@
 ﻿\section{Results}
 
+%\newcommand{\newfigure}[2][0.8]{
+  %\begin{figure}[hbtp]
+    %\centering
+    %\includegraphics[scale=#1]{img/#2.eps}
+    %\caption{}
+    %\label{fig:#2}
+  %\end{figure}
+%}
+
 Using the methodology described above, I gathered the following results. Figure~\ref{fig:cpu-wall-child} on page~\pageref{fig:cpu-wall-child}, Figure~\ref{fig:io-wall-child} on page~\pageref{fig:io-wall-child}, and Figure~\ref{fig:mix-wall-child} on page~\pageref{fig:mix-wall-child} show the average wall time per child process averaged over three trial runs for the three different benchmarks.  Each figure shows the results for a specific benchmark and compares the performance of each scheduling policy based on number of child processes.
 
 The CPU bound benchmark results in Figure~\ref{fig:cpu-wall-child} show that while the number of processes remains relatively low the SCHED\_OTHER scheduling policy out-paces the other policies tested; at high numbers of processes the advantage disappears for all intents and purposes.  Both of the Real-time scheduling algorithms perform relatively equally regardless of number of processes.  Additionally, as the number of processes increases, each process takes more time to complete.
 
-%\begin{figure}[H]
-\begin{figure}[hbtp]
+\begin{figure}[H]
   \centering
   \includegraphics[scale=0.8]{img/cpu-wall-child.eps}
   \caption{}
@@ -14,7 +22,7 @@ The CPU bound benchmark results in Figure~\ref{fig:cpu-wall-child} show that whi
 
 The I/O bound benchmark results in Figure~\ref{fig:io-wall-child} show that a higher priority scheduling algorithm improves wall time.  As the number of processes increases, the performance of the different scheduling algorithms converges and the amount of time for each process to complete decreases.
 
-\begin{figure}[hbtp]
+\begin{figure}[H]
   \centering
   \includegraphics[scale=0.8]{img/io-wall-child.eps}
   \caption{}
@@ -23,9 +31,69 @@ The I/O bound benchmark results in Figure~\ref{fig:io-wall-child} show that a hi
 
 The mixed benchmark results in Figure~\ref{fig:mix-wall-child} show that the scheduling policy does not have a significant impact on the amount of time each process takes to complete execution.  As the number of processes increases, the amount of time each process takes to complete its execution decreases.
 
-\begin{figure}[hbtp]
+\begin{figure}[H]
   \centering
   \includegraphics[scale=0.8]{img/mix-wall-child.eps}
   \caption{}
   \label{fig:mix-wall-child}
+\end{figure}
+
+Figure~\ref{fig:cpu-cs-child} on page~\pageref{fig:cpu-cs-child} and Figure~\ref{fig:mix-cs-child} on page~\pageref{fig:mix-cs-child} show that the number of times a process is context switched under a Real-time scheduling policy remains constant as the number of processes increases.  On the other hand, with the SCHED\_OTHER scheduling policy as the number of child processes increases, so does the amount of context switches per process.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/cpu-cs-child.eps}
+  \caption{}
+  \label{fig:cpu-cs-child}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/mix-cs-child.eps}
+  \caption{}
+  \label{fig:mix-cs-child}
+\end{figure}
+
+As can be seen in Figure~\ref{fig:cpu-thruput-child} on page \pageref{fig:cpu-thruput-child} showing the throughput of the CPU bound benchmark, the highest throughput is achieved using the SCHED\_OTHER scheduling algorithm at relatively low quantities of child processes.  As the number of processes increases, all of the scheduling algorithms converge on a throughput of roughly one process completed every two seconds.
+
+%\begin{figure}[H]
+  %\centering
+  %\begin{subfigure}[b]{0.495\textwidth}
+    %\centering
+    %\includegraphics[scale=0.5]{img/cpu-thruput-child.eps}
+    %\caption{}
+    %\label{fig:cpu-thruput-child}
+  %\end{subfigure}
+  %% ~ % Non-breaking space
+  %\begin{subfigure}[b]{0.495\textwidth}
+    %\centering
+    %\includegraphics[scale=0.5]{img/cpu-usage-child.eps}
+    %\caption{}
+    %\label{fig:cpu-usage-child}
+  %\end{subfigure}
+%\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/cpu-thruput-child.eps}
+  \caption{}
+  \label{fig:cpu-thruput-child}
+\end{figure}
+
+The throughput results in Figure~\ref{fig:io-thruput-child} on page~\pageref{fig:io-thruput-child} show that increasing the number of concurrently executing I/O bound processes increases the overall throughput of the system.  Additionally, the higher the priority of the scheduling algorithm, the higher the throughput.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/io-thruput-child.eps}
+  \caption{}
+  \label{fig:io-thruput-child}
+\end{figure}
+
+The throughput results in Figure~\ref{fig:mix-thruput-child} on page~\pageref{fig:mix-thruput-child} show a similar overall positive correlation between number of processes and throughput to the I/O throughput results.  However, at higher numbers of processes, the SCHED\_OTHER scheduling algorithm seems to show a slight lead, similar to what is seen at lower numbers of running processes in Figure~\ref{fig:cpu-thruput-child} on page~\pageref{fig:cpu-thruput-child}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/mix-thruput-child.eps}
+  \caption{}
+  \label{fig:mix-thruput-child}
 \end{figure}

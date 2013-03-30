@@ -1,3 +1,8 @@
 ﻿\section{Analysis}
 
 Negative correlation wall time could be attributed to higher parallelism between CPU and I/O.
+
+Context switching figures make sense because FIFO only allows preemption from higher priority processes and since each process spawned has same priority, they can only be preempted by a higher priority system process outside my control of this experiment.  Thus, each process should be preempted essentially 0 times and that's what the results show.
+For RR, each process gets a time slice of 0.1000006 seconds and will only be context switched/preempted when the time slice expires.  Therefore, no matter how many processes are running in the system, each process should take the same number of time slices and that's what the results show.
+
+Since SCHED\_RR has the highest priority, followed by SCHED\_FIFO
