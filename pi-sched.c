@@ -1,12 +1,13 @@
 /*
- * File: pi-sched.c
- * Author: Andy Sayler
- * Project: CSCI 3753 Programming Assignment 3
+ * File:        pi-sched.c
+ * Author:      Andy Sayler
+ * Modified by: Stephen Bennett
+ * Project:     CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/07
  * Modify Date: 2013/03/21
  * Description:
- *  This file contains a simple program for statistically
- *      calculating pi using a specific scheduling policy.
+ *  A program for setting the desired scheduling policy and creating
+ *      the desired number of child processes of pi.c
  */
 
 /* Local Includes */

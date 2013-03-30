@@ -1,7 +1,7 @@
 /*
- * File: pi.c
- * Author: Andy Sayler
- * Project: CSCI 3753 Programming Assignment 3
+ * File:        pi.c
+ * Author:      Andy Sayler
+ * Project:     CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/07
  * Modify Date: 2012/03/09
  * Description:
@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <errno.h>
-#include <sched.h>
 
 /* Local Defines */
 #define DEFAULT_ITERATIONS 1000000

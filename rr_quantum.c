@@ -1,10 +1,11 @@
 /*
- * File: rr_quantum.c
- * Author: Andy Sayler
- * Project: CSCI 3753 Programming Assignment 3
+ * File:        rr_quantum.c
+ * Author:      Andy Sayler
+ * Project:     CSCI 3753 Programming Assignment 3
  * Create Date: 2012/03/22
  * Modify Date: 2012/03/22
- * Description: Prints the RR quantum for a given system.
+ * Description:
+ *  Prints the RR quantum for a given system.
  */
 
 /* Library Includes */

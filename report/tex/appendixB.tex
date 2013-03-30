@@ -1,2 +1,40 @@
-\section{Appendix - All Code}
+﻿\section{Appendix - All Code}
 
+\lstdefinestyle{customc}{
+ belowcaptionskip=1\baselineskip,
+ breaklines=true,
+ frame=L,
+ xleftmargin=\parindent,
+ language=C,
+ showstringspaces=false,
+ basicstyle=\footnotesize\ttfamily,
+ keywordstyle=\bfseries\color{green!40!black},
+ commentstyle=\itshape\color{purple!40!black},
+ identifierstyle=\color{blue},
+ stringstyle=\color{orange},
+ escapechar=@,
+}
+\lstdefinestyle{custommake}{
+ belowcaptionskip=1\baselineskip,
+ breaklines=true,
+ frame=L,
+ xleftmargin=\parindent,
+ language=make,
+ showstringspaces=false,
+ basicstyle=\footnotesize\ttfamily,
+ keywordstyle=\bfseries\color{green!40!black},
+ commentstyle=\itshape\color{purple!40!black},
+ identifierstyle=\color{blue},
+ stringstyle=\color{orange},
+}
+%\lstset{escapechar=@,style=customc}
+
+\newcommand{\includecode}[2]{\lstinputlisting[style=customc, caption=#1 \texttt{#2.c}, label=lst:#2]{../#2.c}}
+
+\includecode{CPU Bound Benchmark}{pi}
+\includecode{CPU Bound Benchmark Scheduler}{pi-sched}
+\includecode{I/O Bound Benchmark}{rw}
+\includecode{I/O Bound Benchmark Scheduler}{rw-sched}
+\includecode{Mixed Benchmark}{mix}
+\includecode{Mixed Benchmark Scheduler}{mix-sched}
+\lstinputlisting[style=custommake, caption=Makefile, label=lst:makefile]{../Makefile}

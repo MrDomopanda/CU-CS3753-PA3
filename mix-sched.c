@@ -1,12 +1,12 @@
 /*
- * File: mix-sched.c
- * Author: Stephen Bennett
- * Project: CSCI 3753 Programming Assignment 3
+ * File:        mix-sched.c
+ * Author:      Stephen Bennett
+ * Project:     CSCI 3753 Programming Assignment 3
  * Create Date: 2013/03/21
  * Modify Date: 2013/03/21
  * Description:
- *  This file
- *
+ *  A program for setting the desired scheduling policy and creating
+ *      the desired number of child processes of mix.c.
  */
 
 /* Local Includes */

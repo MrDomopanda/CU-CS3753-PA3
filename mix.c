@@ -1,12 +1,13 @@
 /*
- * File: mix.c
- * Author: Stephen Bennett
- * Project: CSCI 3753 Programming Assignment 3
+ * File:        mix.c
+ * Author:      Stephen Bennett
+ * Project:     CSCI 3753 Programming Assignment 3
  * Create Date: 2013/03/21
  * Modify Date: 2013/03/21
  * Description:
- *  This file contains
- *
+ *  This file contains a small program for statistically calculating pi
+ *      as well as writing the intermediate results of this calculation
+ *      to a file.
  */
 
 /* Local Includes */
