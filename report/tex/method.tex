@@ -13,6 +13,7 @@ For each benchmark, I wrote a separate program (e.g. \texttt{rw-sched.c} for I/O
 \subsection{Testing and Data}
 
 I wrote a Bash script to take care of automation for running the 27 different test cases.  Each test case was run three times and the results were averaged in order to get more accurate data.  While compiling the source code with the Makefile, a single 1 MB file called \texttt{rwinput} is created.  It is created by reading 1024 blocks of size 1024 kB of random data from \texttt{/dev/urandom} and writing the data to \texttt{rwinput}.  To ensure that each instance of the I/O bound benchmark program had its own input file, the Bash script then copies \texttt{rwinput} as many times as necessary and gives each copy a unique name.  The \texttt{rw-sched.c} program then passes the proper unique input file name to each child process \texttt{fork()}ed.  Through the use of the \texttt{time} command and nested \texttt{for} loops iterating over both the number of child processes to \texttt{fork()} and the scheduling algorithms, I gathered results for each of the test cases.  From the \texttt{time} command I gathered the following aggregate information for each set of processes:
+
 \begin{itemize}
   \item Wall time (turnaround time) - the real time the process took to complete from when it entered the system to when it completed
   \item User time - the amount of CPU-seconds the process spent executing in user mode
@@ -21,6 +22,8 @@ I wrote a Bash script to take care of automation for running the 27 different te
   \item The number of times the process was context switched
   \item The number of times the process was blocked on I/O
 \end{itemize}
+
+Since the \texttt{time} command was used on the scheduler process which spawns the  appropriate number of child processes, all information collected from the \texttt{time} command is the sum of the information of all child processes.  As a result, in order to get more useful information on a per process basis, the aggregate results will be divided by the number of child processes spawned.
 
 \subsection{Test System}
 
