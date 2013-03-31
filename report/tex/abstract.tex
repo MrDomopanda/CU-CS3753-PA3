@@ -1,3 +1,5 @@
-\begin{abstract}
+﻿\begin{abstract}
+
+The purpose of this project was to investigate the differences among the various Linux scheduling policies.  The scheduler was tested by gathering timing and execution information from three benchmark programs written to represent the three types of processes: compute bound, I/O bound, and a mix of the two.  It was determined that the ideal scheduling algorithm differs based on the type of process being scheduled.  Compute bound processes perform best under the SCHED\_OTHER scheduling policy, I/O bound processes perform best under a real-time scheduling policy, and mixed processes perform nearly equally under all scheduling policies.
 
 \end{abstract}
