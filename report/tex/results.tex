@@ -97,3 +97,19 @@ The throughput results in Figure~\ref{fig:mix-thruput-child} on page~\pageref{fi
   \caption{}
   \label{fig:mix-thruput-child}
 \end{figure}
+
+Figure~\ref{fig:cpu-usage-child} on page~\pageref{fig:cpu-usage-child} and Figure~\ref{fig:mix-usage-child} on page~\pageref{fig:mix-usage-child} show that as the system utilization increases, so does the CPU utilization; the mixed benchmark shows this more drastically.  The CPU bound benchmark results show that the SCHED\_OTHER scheduling algorithm makes the most efficiency use of the CPU, nearly maxing out all four cores regardless of system utilization.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/cpu-usage-child.eps}
+  \caption{}
+  \label{fig:cpu-usage-child}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{img/mix-usage-child.eps}
+  \caption{}
+  \label{fig:mix-usage-child}
+\end{figure}
