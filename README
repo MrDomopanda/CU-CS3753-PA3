@@ -14,7 +14,7 @@ Junho Ahn - 2012
 handout     - Assignment description and documentation.
 
 ---Executables---
- testscript - A simple bash script for running a few sample test cases.
+ testscript - A simple bash script for running the test cases.
  pi         - A simple CPU bound program for statistically calculating pi.
  pi-sched   - A simple program for spawning N pi processes using a
               specific scheduling policy.
