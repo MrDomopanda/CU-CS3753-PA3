@@ -12,29 +12,23 @@
  commentstyle=\itshape\color{purple!40!black},
  identifierstyle=\color{blue},
  stringstyle=\color{orange},
- escapechar=@,
-}
-\lstdefinestyle{custommake}{
- belowcaptionskip=1\baselineskip,
- breaklines=true,
- frame=L,
- xleftmargin=\parindent,
- language=make,
- showstringspaces=false,
- basicstyle=\footnotesize\ttfamily,
- keywordstyle=\bfseries\color{green!40!black},
- commentstyle=\itshape\color{purple!40!black},
- identifierstyle=\color{blue},
- stringstyle=\color{orange},
+ %escapechar=@,
 }
 %\lstset{escapechar=@,style=customc}
+\newcommand{\includecode}[3]{\lstinputlisting[style=customc, caption=#1 \texttt{#2#3}, label=lst:#2]{../#2#3}}
 
-\newcommand{\includecode}[2]{\lstinputlisting[style=customc, caption=#1 \texttt{#2.c}, label=lst:#2]{../#2.c}}
-
-\includecode{CPU Bound Benchmark}{pi}
-\includecode{CPU Bound Benchmark Scheduler}{pi-sched}
-\includecode{I/O Bound Benchmark}{rw}
-\includecode{I/O Bound Benchmark Scheduler}{rw-sched}
-\includecode{Mixed Benchmark}{mix}
-\includecode{Mixed Benchmark Scheduler}{mix-sched}
-\lstinputlisting[style=custommake, caption=Makefile, label=lst:makefile]{../Makefile}
+\includecode{CPU Bound Benchmark}{pi}{.c}
+\clearpage
+\includecode{CPU Bound Benchmark Scheduler}{pi-sched}{.c}
+\clearpage
+\includecode{I/O Bound Benchmark}{rw}{.c}
+\clearpage
+\includecode{I/O Bound Benchmark Scheduler}{rw-sched}{.c}
+\clearpage
+\includecode{Mixed Benchmark}{mix}{.c}
+\clearpage
+\includecode{Mixed Benchmark Scheduler}{mix-sched}{.c}
+\clearpage
+\includecode{Bash script to run tests}{testscript}{}
+\clearpage
+\includecode{Build file}{Makefile}{}
